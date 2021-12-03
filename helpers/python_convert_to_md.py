@@ -1,6 +1,7 @@
 with open("/Users/garrettsweeney/git/docs/PYTHON.md", "w") as f:
     # Write Python rst header
-    f.write("# Python\n")
+    f.write("# Python\n\n")
+    f.write("* TOC\n{:toc}\n\n")
     # Note about programatic generation
     f.write(
         "> This document is generated programatically from helpers/pytest_python_utilities\n\n"

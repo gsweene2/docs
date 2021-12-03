@@ -1,6 +1,5 @@
 # MySql
 
-<!-- toc -->
 * TOC
 {:toc}
 

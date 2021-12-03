@@ -1,6 +1,7 @@
 # Go
 
-<!-- toc -->
+* TOC
+{:toc}
 
 # Installation
 

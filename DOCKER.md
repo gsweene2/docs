@@ -1,6 +1,7 @@
 # Docker
 
-<!-- toc -->
+* TOC
+{:toc}
 
 ## Blogs
 

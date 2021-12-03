@@ -1,6 +1,7 @@
 # System Design Concepts 
 
-<!-- toc -->
+* TOC
+{:toc}
 
 ## [L1: What is a distributed system](https://youtu.be/7VbL89mKK3M)
 

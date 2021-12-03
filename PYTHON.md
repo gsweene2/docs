@@ -1,4 +1,8 @@
 # Python
+
+* TOC
+{:toc}
+
 > This document is generated programatically from helpers/pytest_python_utilities
 
 ## Imports

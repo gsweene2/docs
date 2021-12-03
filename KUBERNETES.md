@@ -1,6 +1,7 @@
 # Kubernetes
 
-<!-- toc -->
+* TOC
+{:toc}
 
 # General Kubernetes
 

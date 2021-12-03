@@ -1,6 +1,7 @@
 # Vim
 
-<!-- toc -->
+* TOC
+{:toc}
 
 ## Vimrc configuration
 

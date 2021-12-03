@@ -2,7 +2,8 @@
 
 For entertainment purposes only :)
 
-<!-- toc -->
+* TOC
+{:toc}
 
 ## Cash Back or Points?
 

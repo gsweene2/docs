@@ -1,6 +1,7 @@
 # Terraform
 
-<!-- toc -->
+* TOC
+{:toc}
 
 ## Lifecycle Basics
 

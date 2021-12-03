@@ -1,6 +1,7 @@
 # Git
 
-<!-- toc -->
+* TOC
+{:toc}
 
 ## Checkout file from another branch
 

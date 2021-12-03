@@ -1,6 +1,7 @@
 # Utilities
 
-<!-- toc -->
+* TOC
+{:toc}
 
 ## Find a domains's DNS servers
 
