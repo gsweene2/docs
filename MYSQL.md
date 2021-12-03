@@ -1,6 +1,8 @@
 # MySql
 
 <!-- toc -->
+* TOC
+{:toc}
 
 ## Local Installation, Start, Connect
 
