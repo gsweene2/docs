@@ -5,7 +5,7 @@
 ## Checkout file from another branch
 
 ```
-git checkout <other_branch> <path_to_file>
+git checkout <other_branch> -- <path_to_file>
 ```
 
 ## Reset branch to prior commit
