@@ -25,12 +25,12 @@ kubectl create deployment nginx --image=nginx
 
 Get image(s) from deployment
 ```
-k get deployment deploymentname -o=jsonpath={.spec.template.spec.containers[*].image}
+k get deploy <deploy_name> -o=jsonpath={.spec.template.spec.containers[*].image}
 ````
 
 Get image(s) from pod
 ```
-k get pod podname -o=jsonpath={.spec.containers[*].image}
+k get pod <pod_name> -o=jsonpath={.spec.containers[*].image}
 ```
 
 List pods with name of nodes
@@ -40,10 +40,10 @@ k get pod -o=custom-columns=NAME:.metadata.name,STATUS:.status.phase,NODE:.spec.
 
 Get status of each container in pod
 ```
-k get pod webapp -o=jsonpath='{range .status.containerStatuses[*]}{"\nImage: "}{.image}{"\nName: "}{.name}{"\nState: "}{.state}{"\n"}'
+k get pod <pod_name> -o=jsonpath='{range .status.containerStatuses[*]}{"\nImage: "}{.image}{"\nName: "}{.name}{"\nState: "}{.state}{"\n"}'
 ```
 
 Create a pod from an image
 ```
-k run podname --image=podimage
+k run <pod_name> --image=<image>
 ```
