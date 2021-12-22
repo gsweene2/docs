@@ -3,6 +3,23 @@
 * TOC
 {:toc}
 
+## Contexts
+
+Get all contexts
+```
+k config get-contexts
+```
+
+Get current context
+```
+k config get-contexts -o name
+```
+
+Get current context
+```
+cat ~/.kube/config | grep current | sed -e "s/current-context: //"
+```
+
 ## Pods
 
 Getting started: what should I alias
@@ -111,6 +128,12 @@ Create deployment from image
 k create deployment $DEPLOY_NAME --replicas=1 --image=some_image
 ```
 
+## StatefulSet
+
+Scale down
+```bash
+ k -n $NAMESPACE scale sts $STS_NAME --replicas 1 --record
+ ```
 ## Services
 
 Count services in the default namespace

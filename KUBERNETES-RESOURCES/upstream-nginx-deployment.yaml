@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: upstream-nginx
+spec:
+  selector:
+    matchLabels:
+      run: upstream-nginx
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: upstream-nginx
+    spec:
+      containers:
+      - name: upstream-nginx
+        image: nginx:1.16.1-alpine
+        ports:
+        - containerPort: 80
+        readinessProbe:
+          exec:
+            command:
+            - sh
+            - -c
+            - 'wget -T1 -O- http://downstream-nginx-service:80'
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
