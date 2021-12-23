@@ -2,13 +2,13 @@ apiVersion: v1
 kind: Service
 metadata:
   creationTimestamp: null
-  name: downstream-nginx-service
+  name: downstream-httpd-service
 spec:
   ports:
   - port: 80
     protocol: TCP
     targetPort: 80
   selector:
-    run: downstream-nginx
+    run: downstream-httpd
 status:
   loadBalancer: {}

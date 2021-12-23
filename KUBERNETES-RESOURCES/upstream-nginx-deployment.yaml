@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       run: upstream-nginx
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: upstream-nginx
-        image: nginx:1.16.1-alpine
+        image: nginx
         ports:
         - containerPort: 80
         readinessProbe:
@@ -22,6 +22,6 @@ spec:
             command:
             - sh
             - -c
-            - 'wget -T1 -O- http://downstream-nginx-service:80'
+            - 'curl http://downstream-hello-service:80'
       dnsPolicy: ClusterFirst
       restartPolicy: Always

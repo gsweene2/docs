@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       run: downstream-nginx
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:

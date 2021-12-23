@@ -37,6 +37,11 @@ Count pods in all namespaces
 k get pods --all-namespaces --output json | jq -j '.items | length'
 ```
 
+List and sort all pods by age
+```
+k get pods -A --sort-by=.metadata.creationTimestamp
+```
+
 Create deployment with specific image (`nginx`)
 ```bash
 kubectl create deployment $DEPLOY_NAME --image=$IMAGE

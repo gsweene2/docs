@@ -19,11 +19,11 @@ Example: An app that depends on a downstream service being available
   k get pod
   ```
 
-3. Create the downstream deployment and service, `downstream-nginx-deployment` and `downstream-nginx-service`
+3. Create the downstream deployment and service, `downstream-httpd-deployment` and `downstream-httpd-service`
 
   ```
-  k apply -f KUBERNETES-RESOURCES/downstream-nginx-deployment.yaml
-  k apply -f KUBERNETES-RESOURCES/downstream-nginx-service.yaml
+  k apply -f KUBERNETES-RESOURCES/downstream-httpd-deployment.yaml
+  k apply -f KUBERNETES-RESOURCES/downstream-httpd-service.yaml
   ```
 
 4. Confirm that the upstream service is now available
