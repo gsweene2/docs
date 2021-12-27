@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: downstream-nodejs
+spec:
+  selector:
+    matchLabels:
+      run: downstream-nodejs
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: downstream-nodejs
+    spec:
+      containers:
+      - name: downstream-nodejs
+        image: heroku/nodejs-hello-world
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/sh", "-c", "echo \"Starting up Node\""]
+        ports:
+        - containerPort: 3000

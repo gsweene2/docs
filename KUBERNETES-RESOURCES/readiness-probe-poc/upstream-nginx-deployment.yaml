@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: upstream-nginx
+spec:
+  selector:
+    matchLabels:
+      run: upstream-nginx
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: upstream-nginx
+    spec:
+      containers:
+      - name: upstream-nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+        readinessProbe:
+          exec:
+            command:
+            - sh
+            - -c
+            - 'curl http://downstream-nodejs-service:3000'
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
