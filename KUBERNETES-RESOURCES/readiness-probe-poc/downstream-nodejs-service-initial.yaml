@@ -2,13 +2,17 @@ apiVersion: v1
 kind: Service
 metadata:
   creationTimestamp: null
-  name: downstream-nodejs-service
+  labels:
+    app: downstream-nodejs
+  name: downstream-nodejs
 spec:
   ports:
-  - port: 3000
+  - name: 3000-3000
+    port: 3000
     protocol: TCP
     targetPort: 3000
   selector:
-    run: downstream-nodejs
+    app: downstream-nodejs
+  type: ClusterIP
 status:
   loadBalancer: {}
