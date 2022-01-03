@@ -2,11 +2,13 @@
 # Create resources
 
 ```bash
-k apply -f downstream-nodejs-deployment.yaml
-k apply -f downstream-nodejs-service.yaml
+cd KUBERNETES-RESOURCES/readiness-probe-poc
 
-k apply -f upstream-nginx-deployment.yaml
-k apply -f upstream-nginx-service.yaml
+k apply -f downstream-nodejs-deployment-initial.yaml
+k apply -f downstream-nodejs-service-initial.yaml
+
+k apply -f upstream-nginx-deployment-initial.yaml
+k apply -f upstream-nginx-service-initial.yaml
 ```
 
 # The exercise
@@ -31,16 +33,16 @@ Warning  Unhealthy  1s (x6 over 4m31s)  kubelet            Readiness probe faile
 # Delete resources
 
 ```bash
-k delete -f downstream-nodejs-deployment.yaml
-k delete -f downstream-nodejs-service.yaml
+k delete -f downstream-nodejs-deployment-initial.yaml
+k delete -f downstream-nodejs-service-initial.yaml
 
-k delete -f upstream-nginx-deployment.yaml
-k delete -f upstream-nginx-service.yaml
+k delete -f upstream-nginx-deployment-initial.yaml
+k delete -f upstream-nginx-service-initial.yaml
 ```
 
 # Optional 
 
-## Step 1: Create Resources without readiness probes
+## Create Resources without readiness probes
 
 ```bash
 NAME=upstream-nginx
