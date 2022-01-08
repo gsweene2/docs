@@ -1,4 +1,4 @@
-# Kubernetes: Networking
+# [Draft] Kubernetes: Networking
 
 https://www.digitalocean.com/community/tutorials/how-to-inspect-kubernetes-networking
 https://wiki.alpinelinux.org/wiki/Package_management
@@ -7,38 +7,53 @@ https://gist.github.com/BretFisher/5e1a0c7bcca4c735e716abf62afad389
 * TOC
 {:toc}
 
-## Gather k8s pod & service details
-Pod Cluster IP
+## (1) Deploy an EKS Cluster with sample application
+
+0. A k8s cluster with a service and a pod
+1. Know the Pod name
+2. Know the Service name
+
+Write the pod name to POD_NAME
 ```
-k get pod -o wide
+POD_NAME=upstream-nginx-7d948b789-gc9gl
 ```
 
-Svc IP
-```
-k get service --all-namespaces
-```
+## (2) Gather node, container, PID, & Kube DNS Info
 
-## Identify the PID of container on k8s node
-List Containers on Node
 ```bash
-docker ps
-```
-
-Get PID of container
-```
+# Identify the Node that the Pod is on
+NODE_IP="$(k get pod $POD_NAME -o=jsonpath={.status.hostIP})"
+# Identifiy the Docker container Id
+CONTAINER_ID="$(k get pod $POD_NAME -o=jsonpath={.status.containerStatuses[0].containerID} | sed -e 's/docker:\/\///')"
+# Identify the PID for the container
 PID="$(docker inspect --format '{{ .State.Pid }}' $CONTAINER_ID)"
-echo $PID
+# Identify the kube-dns IP
+KUBE_DNS_CIP="$(kubectl get service -n kube-system kube-dns)"
 ```
 
-## Build and run container with tools to inspect
+## (3) Build the tools image & deploy a tools pod
+
+The fillowing builds the image from Dockerfile in `k8s-tools KUBERNETES-RESOURCES/tools-image`. You can push to your Docker Hub or use the one I've pushed.
+
+(Optional: Build and Push)
 ```bash
-docker build -t k8s-tools KUBERNETES-RESOURCES/tools-image && docker run -d k8s-tools:latest
+docker build -t k8s-tools KUBERNETES-RESOURCES/tools-image
+docker image tag k8s-tools gsweene2/k8s-tools:0.2
+docker push gsweene2/k8s-tools:0.2
 ```
 
-## Run a script to dump details
+Create a deployment with the tools image
+```
+k create deploy k8s-tools --replicas=1 --image=gsweene2/k8s-tools:0.2
+```
+
+## (4) Run a script to dump details
 ```bash
 chmod +x ./KUBERNETES-RESOURCES/networking/inspect.sh
-./KUBERNETES-RESOURCES/networking/inspect.sh
+
+./KUBERNETES-RESOURCES/networking/inspect.sh \
+    $TOOLS_CONTAINER \
+    $CONTAINER_ID \
+    $NODE_IP \
+    $KUBE_DNS_CIP
 ```
-
-

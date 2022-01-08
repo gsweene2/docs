@@ -12,4 +12,10 @@ apk add conntrack-tools && \
 
 # The ISC DNS tools
 # https://pkgs.alpinelinux.org/package/edge/main/x86/bind-tools
-apk add bind-tools
+apk add bind-tools && \
+
+# iptables
+# https://pkgs.alpinelinux.org/package/edge/main/x86/iptables
+apk add iptables
+
+CMD sleep infinity
