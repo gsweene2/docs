@@ -28,7 +28,23 @@ CONTAINER_ID="$(k get pod $POD_NAME -o=jsonpath={.status.containerStatuses[0].co
 # Identify the PID for the container
 PID="$(docker inspect --format '{{ .State.Pid }}' $CONTAINER_ID)"
 # Identify the kube-dns IP
-KUBE_DNS_CIP="$(kubectl get service -n kube-system kube-dns)"
+KUBE_DNS_CIP="$(kubectl get service -n kube-system kube-dns -o=jsonpath={.spec.clusterIP})"
+```
+
+Verify everything looks okay (example output below)
+```bash
+echo "NODE_IP: $NODE_IP" &&
+echo "CONTAINER_ID: $CONTAINER_ID" &&
+echo "PID: $PID" &&
+echo "KUBE_DNS_CIP: $KUBE_DNS_CIP"
+```
+
+Example Output:
+```
+NODE_IP: 192.168.65.4
+CONTAINER_ID: 6d364b769e4493030072d143e7b10f5603902df609cc9d6377869d37c2ffc3d1
+PID: 55554
+KUBE_DNS_CIP: 10.96.0.10
 ```
 
 ## (3) Build the tools image & deploy a tools pod
